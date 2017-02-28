@@ -1,0 +1,24 @@
+{
+  "name": "s3d-fitting-commands",
+  "version": "0.1.0",
+  "description": "module with all available fitting commands (json) to communicate with the s3DFittingService (c++ websocket service)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigma3Dev/s3d-fitting-commands.git"
+  },
+  "keywords": [
+    "fitting",
+    "geometry",
+    "algorithm"
+  ],
+  "author": "sigma3D",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sigma3Dev/s3d-fitting-commands/issues"
+  },
+  "homepage": "https://github.com/sigma3Dev/s3d-fitting-commands#readme"
+}
