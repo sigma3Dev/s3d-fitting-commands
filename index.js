@@ -8,14 +8,15 @@ module.exports = {
    * @param  {number} id an identifier for the generated request
    * @return {string} the json request representation
    */
-  fitCircle3DTscheby: function(points, id) {
+  fitCircle3DTscheby(points, id) {
     // check input points
-    if (points == null || !points.isArray()) {
+    if (points == null) {
       return null;
     }
     // set up observations
-    var observations = [];
-    for (int i = 0; i < points.length; i++) {
+    const observations = [];
+    var i;
+    for (i = 0; i < points.length; i++) {
       // check point
       if (points[i].x == null || points[i].y == null || points[i].z == null) {
         return null;
@@ -28,13 +29,13 @@ module.exports = {
       });
     }
     // build up fitCircle3DTscheby request object
-    let message = JSON.stringify(
+    const message = JSON.stringify(
       {
         jsonrpc: '2.0',
-        id: id,
+        id,
         method: 'fitCircle3DTscheby',
         params: {
-          observations: observations,
+          observations,
         },
       },
       undefined,
@@ -51,14 +52,15 @@ module.exports = {
    * @param  {number} id an identifier for the generated request
    * @return {string} the json request representation
    */
-  fitPlaneL2: function(points, id) {
+  fitPlaneL2(points, id) {
     // check input points
-    if (points == null || !points.isArray()) {
+    if (points == null) {
       return null;
     }
     // set up observations
-    var observations = [];
-    for (int i = 0; i < points.length; i++) {
+    const observations = [];
+    var i;
+    for (i = 0; i < points.length; i++) {
       // check point
       if (points[i].x == null || points[i].y == null || points[i].z == null) {
         return null;
@@ -71,13 +73,13 @@ module.exports = {
       });
     }
     // build up fitPlaneL2 request object
-    let message = JSON.stringify(
+    const message = JSON.stringify(
       {
         jsonrpc: '2.0',
-        id: id,
+        id,
         method: 'fitPlaneL2',
         params: {
-          observations: observations,
+          observations,
         },
       },
       undefined,
@@ -95,9 +97,9 @@ module.exports = {
    * @param  {number} id an identifier for the generated request
    * @return {string} the json request representation
    */
-  registerPointsInPlane: function(plane, points, id) {
+  registerPointsInPlane(plane, points, id) {
     // check input points
-    if (points == null || !points.isArray()) {
+    if (points == null) {
       return null;
     }
     // check input plane
@@ -106,8 +108,9 @@ module.exports = {
       return null;
     }
     // set up observations
-    var observations = [];
-    for (int i = 0; i < points.length; i++) {
+    const observations = [];
+    var i;
+    for (i = 0; i < points.length; i++) {
       // check point
       if (points[i].x == null || points[i].y == null || points[i].z == null) {
         return null;
@@ -120,10 +123,10 @@ module.exports = {
       });
     }
     // build up registerPointsInPlane request object
-    let message = JSON.stringify(
+    const message = JSON.stringify(
       {
         jsonrpc: '2.0',
-        id: id,
+        id,
         method: 'registerPointsInPlane',
         params: {
           points: observations,
@@ -134,7 +137,7 @@ module.exports = {
             i: plane.i,
             j: plane.j,
             k: plane.k,
-          }
+          },
         },
       },
       undefined,
