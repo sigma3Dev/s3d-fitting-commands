@@ -176,7 +176,8 @@ module.exports = {
       targetPoints: []
     }
 
-    for (var i = 0; i < startPoints.length; i++) {
+	var i;
+    for (i = 0; i < startPoints.length; i++) {
       // check point
       if (startPoints[i].x == null || startPoints[i].y == null || startPoints[i].z == null) {
         return null;
@@ -275,19 +276,14 @@ module.exports = {
   applyTransformation(point, transformation, id) {
     // check input points
     if (
-      point == null ||
-      point.x == null ||
-      point.y == null ||
-      point.z == null ||
       transformation == null ||
-      transformation.tx == null ||
-      transformation.ty == null ||
-      transformation.tz == null ||
-      transformation.q0 == null ||
-      transformation.q1 == null ||
-      transformation.q2 == null ||
-      transformation.q3 == null ||
-      transformation.m == null
+      transformation[0] == null ||
+      transformation[1] == null ||
+      transformation[2] == null ||
+      transformation[3] == null ||
+      transformation[4] == null ||
+      transformation[5] == null ||
+      transformation[6] == null
     ) {
       return null;
     }
@@ -302,14 +298,14 @@ module.exports = {
       },
       // add transformation
       transformation: {
-        tx = transformation.tx,
-        ty = transformation.ty,
-        tz = transformation.tz,
-        q0 = transformation.q0,
-        q1 = transformation.q1,
-        q2 = transformation.q2,
-        q3 = transformation.q3,
-        m = transformation.m,
+        tx: transformation[0],
+        ty: transformation[1],
+        tz: transformation[2],
+        q0: transformation[3],
+        q1: transformation[4],
+        q2: transformation[5],
+        q3: transformation[6],
+        m: 1.0,
       }
     }
 
