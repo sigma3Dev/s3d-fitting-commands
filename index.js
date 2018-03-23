@@ -223,10 +223,6 @@ module.exports = {
   invertTransformationParameters(transformation, id) {
     // check input points
     if (
-      point == null ||
-      point.x == null ||
-      point.y == null ||
-      point.z == null ||
       transformation == null ||
       transformation.tx == null ||
       transformation.ty == null ||
@@ -280,6 +276,10 @@ module.exports = {
   applyTransformation(point, transformation, id) {
     // check input points
     if (
+      point == null ||
+      point.x == null ||
+      point.y == null ||
+      point.z == null ||
       transformation == null ||
       transformation[0] == null ||
       transformation[1] == null ||
