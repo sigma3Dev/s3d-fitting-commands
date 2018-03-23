@@ -14,7 +14,7 @@ module.exports = {
       return null;
     }
     // set up observations
-    const observations = [];
+    var observations = [];
     var i;
     for (i = 0; i < points.length; i++) {
       // check point
@@ -29,7 +29,7 @@ module.exports = {
       });
     }
     // build up fitCircle3DTscheby request object
-    const message = JSON.stringify(
+    var message = JSON.stringify(
       {
         jsonrpc: '2.0',
         id,
@@ -58,7 +58,7 @@ module.exports = {
       return null;
     }
     // set up observations
-    const observations = [];
+    var observations = [];
     var i;
     for (i = 0; i < points.length; i++) {
       // check point
@@ -73,7 +73,7 @@ module.exports = {
       });
     }
     // build up fitPlaneL2 request object
-    const message = JSON.stringify(
+    var message = JSON.stringify(
       {
         jsonrpc: '2.0',
         id,
@@ -108,7 +108,7 @@ module.exports = {
       return null;
     }
     // set up observations
-    const observations = [];
+    var observations = [];
     var i;
     for (i = 0; i < points.length; i++) {
       // check point
@@ -123,7 +123,7 @@ module.exports = {
       });
     }
     // build up registerPointsInPlane request object
-    const message = JSON.stringify(
+    var message = JSON.stringify(
       {
         jsonrpc: '2.0',
         id,
@@ -164,20 +164,36 @@ module.exports = {
       targetPoints == null ||
       targetPoints[0].x == null ||
       targetPoints[0].y == null ||
-      targetPoints[0].z == null
+      targetPoints[0].z == null ||
+      startPoints.length !== targetPoints.length
     ) {
       return null;
     }
 
-    const message = JSON.stringify(
+    var observations = {
+      startPoints: [],
+      targetPoints: []
+    }
+
+    for (var i = 0; i < startPoints.length; i++) {
+      observations.startPoints.push({
+        x: startPoints[i].x,
+        y: startPoints[i].y,
+        z: startPoints[i].z,
+      });
+      observations.targetPoints.push({
+        x: targetPoints[i].x,
+        y: targetPoints[i].y,
+        z: targetPoints[i].z,
+      });
+    }
+
+    var message = JSON.stringify(
       {
         "jsonrpc": "2.0",
         id,
         "method": "transformation3D6W",
-        "params": {
-            startPoints,
-            targetPoints,
-        },
+        "params": observations
       },
       undefined,
       4
