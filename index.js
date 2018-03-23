@@ -146,4 +146,41 @@ module.exports = {
     return message;
   },
 
+  /**
+   * transformation3D6W - generates the json request to transform 3D coordinates
+   * 
+   * @param {array} startPoints - the coordinates of the start system
+   * @param {array} targetPoints - the coordinates of the target system
+   * @param {number} id - an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  transformation3D6W(startPoints, targetPoints, id) {
+    // check input points
+    if (
+      startPoints == null ||
+      startPoints[0].x == null ||
+      startPoints[0].y == null ||
+      startPoints[0].z == null ||
+      targetPoints == null ||
+      targetPoints[0].x == null ||
+      targetPoints[0].y == null ||
+      targetPoints[0].z == null
+    ) {
+      return null;
+    }
+
+    const message = JSON.stringify(
+      {
+        "jsonrpc": "2.0",
+        id,
+        "method": "transformation3D6W",
+        "params": {
+            startPoints,
+            targetPoints,
+        },
+      },
+      undefined,
+      4
+    );
+  }
 };

@@ -38,4 +38,14 @@ fitPlaneL2: function(points, id)
  * @return {string} the json request representation
  */
 registerPointsInPlane: function(plane, points, id)
+
+/**
+ * transformation3D6W - generates the json request to transform 3D coordinates
+ * 
+ * @param  {Array} startPoints the coordinates of the start system
+ * @param  {Array} targetPoints the coordinates of the target system
+ * @param  {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+transformation3D6W: function(startPoints, targetPoints, id)
 ```
