@@ -287,7 +287,8 @@ module.exports = {
       transformation[3] == null ||
       transformation[4] == null ||
       transformation[5] == null ||
-      transformation[6] == null
+      transformation[6] == null ||
+      transformation.length !== 7
     ) {
       return null;
     }
