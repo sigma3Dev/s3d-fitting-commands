@@ -213,7 +213,7 @@ module.exports = {
    * invertTransformationParameters - generates the json request to invert transformation parameters
    * 
    * @param {object} transformation transformation parameters to be inverted
-   * @param {*} id an identifier for the generated request
+   * @param {number} id an identifier for the generated request
    * @return {string} the json request representation
    */
   invertTransformationParameters(transformation, id) {
@@ -261,7 +261,15 @@ module.exports = {
     return message;
   },
 
-  applyTransformation: function(point, transformation, id) {
+  /**
+   * applyTransformation - generates the json request to apply a transformation
+   * 
+   * @param {object} point point to apply transformation to
+   * @param {object} transformation  transformation to apply to the point
+   * @param {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  applyTransformation(point, transformation, id) {
     // check input points
     if (
       point == null ||

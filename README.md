@@ -48,4 +48,23 @@ registerPointsInPlane: function(plane, points, id)
  * @return {string} the json request representation
  */
 transformation3D6W: function(startPoints, targetPoints, id)
+
+/**
+ * invertTransformationParameters - generates the json request to invert transformation parameters
+ * 
+ * @param {Object} transformation transformation parameters to be inverted
+ * @param {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+invertTransformationParameters: function(transformation, id)
+
+/**
+ * applyTransformation - generates the json request to apply a transformation
+ * 
+ * @param {object} point point to apply transformation to
+ * @param {object} transformation  transformation to apply to the point
+ * @param {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+applyTransformation: function(point, transformation, id)
 ```
