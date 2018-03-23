@@ -192,6 +192,9 @@ module.exports = {
         x: targetPoints[i].x,
         y: targetPoints[i].y,
         z: targetPoints[i].z,
+        useX: targetPoints[i].useX,
+        useY: targetPoints[i].useY,
+        useZ: targetPoints[i].useZ,
       });
     }
 
