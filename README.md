@@ -1,11 +1,17 @@
+[![Build Status](https://travis-ci.org/sigma3Dev/s3d-fitting-commands.svg?branch=master)](https://travis-ci.org/sigma3Dev/s3d-fitting-commands)
+
 # s3d-fitting-commands
 module with all available fitting commands (json) to communicate with the s3DFittingService (c++ websocket service)
 
 ## Installation
 
-  npm install s3d-fitting-commands --save
+  ```npm install s3d-fitting-commands --save```
 
-## overview
+## Testing
+
+  ```npm test```
+
+## Overview
 
 ```js
 /**

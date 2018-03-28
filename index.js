@@ -176,7 +176,7 @@ module.exports = {
       targetPoints: []
     }
 
-	var i;
+	  var i;
     for (i = 0; i < startPoints.length; i++) {
       // check point
       if (startPoints[i].x == null || startPoints[i].y == null || startPoints[i].z == null) {
