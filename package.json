@@ -4,7 +4,7 @@
   "description": "module with all available fitting commands (json) to communicate with the s3DFittingService (c++ websocket service)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/sigma3Dev/s3d-fitting-commands/issues"
   },
-  "homepage": "https://github.com/sigma3Dev/s3d-fitting-commands#readme"
+  "homepage": "https://github.com/sigma3Dev/s3d-fitting-commands#readme",
+  "devDependencies": {
+    "mocha": "^5.0.5"
+  }
 }
