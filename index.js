@@ -1,5 +1,4 @@
 module.exports = {
-
   /**
    * fitCircle3DTscheby - generates the json request to fit a 3D-circle
    * with Tschebyscheff approximation
@@ -25,18 +24,18 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z,
+        z: points[i].z
       });
     }
     // build up fitCircle3DTscheby request object
     var message = JSON.stringify(
       {
-        jsonrpc: '2.0',
+        jsonrpc: "2.0",
         id,
-        method: 'fitCircle3DTscheby',
+        method: "fitCircle3DTscheby",
         params: {
-          observations,
-        },
+          observations
+        }
       },
       undefined,
       4
@@ -69,18 +68,18 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z,
+        z: points[i].z
       });
     }
     // build up fitPlaneL2 request object
     var message = JSON.stringify(
       {
-        jsonrpc: '2.0',
+        jsonrpc: "2.0",
         id,
-        method: 'fitPlaneL2',
+        method: "fitPlaneL2",
         params: {
-          observations,
-        },
+          observations
+        }
       },
       undefined,
       4
@@ -103,8 +102,15 @@ module.exports = {
       return null;
     }
     // check input plane
-    if (plane == null || plane.x == null || plane.y == null || plane.z == null
-      || plane.i == null || plane.j == null || plane.k == null) {
+    if (
+      plane == null ||
+      plane.x == null ||
+      plane.y == null ||
+      plane.z == null ||
+      plane.i == null ||
+      plane.j == null ||
+      plane.k == null
+    ) {
       return null;
     }
     // set up observations
@@ -119,15 +125,15 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z,
+        z: points[i].z
       });
     }
     // build up registerPointsInPlane request object
     var message = JSON.stringify(
       {
-        jsonrpc: '2.0',
+        jsonrpc: "2.0",
         id,
-        method: 'registerPointsInPlane',
+        method: "registerPointsInPlane",
         params: {
           points: observations,
           plane: {
@@ -136,9 +142,9 @@ module.exports = {
             z: plane.z,
             i: plane.i,
             j: plane.j,
-            k: plane.k,
-          },
-        },
+            k: plane.k
+          }
+        }
       },
       undefined,
       4
@@ -148,7 +154,7 @@ module.exports = {
 
   /**
    * transformation3D6W - generates the json request to transform 3D coordinates
-   * 
+   *
    * @param {array} startPoints the coordinates of the start system
    * @param {array} targetPoints the coordinates of the target system
    * @param {number} id an identifier for the generated request
@@ -174,19 +180,23 @@ module.exports = {
     var observations = {
       startPoints: [],
       targetPoints: []
-    }
+    };
 
-	  var i;
+    var i;
     for (i = 0; i < startPoints.length; i++) {
       // check point
-      if (startPoints[i].x == null || startPoints[i].y == null || startPoints[i].z == null) {
+      if (
+        startPoints[i].x == null ||
+        startPoints[i].y == null ||
+        startPoints[i].z == null
+      ) {
         return null;
       }
       // add start point
       observations.startPoints.push({
         x: startPoints[i].x,
         y: startPoints[i].y,
-        z: startPoints[i].z,
+        z: startPoints[i].z
       });
       // add target point
       observations.targetPoints.push({
@@ -195,17 +205,17 @@ module.exports = {
         z: targetPoints[i].z,
         useX: targetPoints[i].useX,
         useY: targetPoints[i].useY,
-        useZ: targetPoints[i].useZ,
+        useZ: targetPoints[i].useZ
       });
     }
 
     // build up transformation3D6W request object
     var message = JSON.stringify(
       {
-        "jsonrpc": "2.0",
+        jsonrpc: "2.0",
         id,
-        "method": "transformation3D6W",
-        "params": observations
+        method: "transformation3D6W",
+        params: observations
       },
       undefined,
       4
@@ -215,7 +225,7 @@ module.exports = {
 
   /**
    * invertTransformationParameters - generates the json request to invert transformation parameters
-   * 
+   *
    * @param {object} transformation transformation parameters to be inverted
    * @param {number} id an identifier for the generated request
    * @return {string} the json request representation
@@ -239,7 +249,7 @@ module.exports = {
     // set up observations
     var observations = {
       // add transformation
-      "transformation": {
+      transformation: {
         tx: transformation.tx,
         ty: transformation.ty,
         tz: transformation.tz,
@@ -247,17 +257,17 @@ module.exports = {
         q1: transformation.q1,
         q2: transformation.q2,
         q3: transformation.q3,
-        m: transformation.m,
+        m: transformation.m
       }
-    }
+    };
 
     // build up invertTransformationParameters request object
     var message = JSON.stringify(
       {
-        "jsonrpc": "2.0",
+        jsonrpc: "2.0",
         id,
-        "method": "invertTransformationParameters",
-        "params": observations
+        method: "invertTransformationParameters",
+        params: observations
       },
       undefined,
       4
@@ -267,7 +277,7 @@ module.exports = {
 
   /**
    * applyTransformation - generates the json request to apply a transformation
-   * 
+   *
    * @param {object} point point to apply transformation to
    * @param {object} transformation  transformation to apply to the point
    * @param {number} id an identifier for the generated request
@@ -310,17 +320,17 @@ module.exports = {
         q1: transformation[4],
         q2: transformation[5],
         q3: transformation[6],
-        m: 1.0,
+        m: 1.0
       }
-    }
+    };
 
     // build up applyTransformation request object
     var message = JSON.stringify(
       {
-        "jsonrpc": "2.0",
+        jsonrpc: "2.0",
         id,
-        "method": "applyTransformation",
-        "params": observations
+        method: "applyTransformation",
+        params: observations
       },
       undefined,
       4
@@ -330,7 +340,7 @@ module.exports = {
 
   /**
    * quatToCardan - generates the json request to transform quaternions to cardan rotation
-   * 
+   *
    * @param {object} coord to be transformed
    * @param {number} id an identifier for the generated request
    * @return {string} the json request representation
@@ -340,7 +350,7 @@ module.exports = {
     if (
       coords == null ||
       coords.q0 == null ||
-      coords.q1 == null ||
+      coord.q1 == null ||
       coords.q2 == null ||
       coords.q3 == null
     ) {
@@ -352,16 +362,16 @@ module.exports = {
       q0: coords.q0,
       q1: coords.q1,
       q2: coords.q2,
-      q3: coords.q3,
-    }
+      q3: coords.q3
+    };
 
     // build up quaternion2CardanRotation request object
     var message = JSON.stringify(
       {
-        "jsonrpc": "2.0",
+        jsonrpc: "2.0",
         id,
-        "method": "quaternion2CardanRotation",
-        "params": observations
+        method: "quaternion2CardanRotation",
+        params: observations
       },
       undefined,
       4
@@ -371,7 +381,7 @@ module.exports = {
 
   /**
    * cardanToQuat - generates the json request to transform cardan rotation to quaternions
-   * 
+   *
    * @param {object} coord to be transformed
    * @param {number} id an identifier for the generated request
    * @return {string} the json request representation
@@ -389,22 +399,22 @@ module.exports = {
 
     // set up observations
     var observations = {
-      Rx: coords.Rx,
-      Ry: coords.Ry,
-      Rz: coords.Rz,
-    }
+      rx: coords.Rx,
+      ry: coords.Ry,
+      rz: coords.Rz
+    };
 
     // build up cardanRotation2Quaternion request object
     var message = JSON.stringify(
       {
-        "jsonrpc": "2.0",
+        jsonrpc: "2.0",
         id,
-        "method": "cardanRotation2Quaternion",
-        "params": observations
+        method: "cardanRotation2Quaternion",
+        params: observations
       },
       undefined,
       4
     );
     return message;
-  },
+  }
 };
