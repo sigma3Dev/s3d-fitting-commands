@@ -326,5 +326,85 @@ module.exports = {
       4
     );
     return message;
-  }
+  },
+
+  /**
+   * quatToCardan - generates the json request to transform quaternions to cardan rotation
+   * 
+   * @param {object} coord to be transformed
+   * @param {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  quatToCardan(coords, id) {
+    // check input points
+    if (
+      coords == null ||
+      coords.q0 == null ||
+      coords.q1 == null ||
+      coords.q2 == null ||
+      coords.q3 == null
+    ) {
+      return null;
+    }
+
+    // set up observations
+    var observations = {
+      q0: coords.q0,
+      q1: coords.q1,
+      q2: coords.q2,
+      q3: coords.q3,
+    }
+
+    // build up quaternion2CardanRotation request object
+    var message = JSON.stringify(
+      {
+        "jsonrpc": "2.0",
+        id,
+        "method": "quaternion2CardanRotation",
+        "params": observations
+      },
+      undefined,
+      4
+    );
+    return message;
+  },
+
+  /**
+   * cardanToQuat - generates the json request to transform cardan rotation to quaternions
+   * 
+   * @param {object} coord to be transformed
+   * @param {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  cardanToQuat(coords, id) {
+    // check input points
+    if (
+      coords == null ||
+      coords.Rx == null ||
+      coords.Ry == null ||
+      coords.Rz == null
+    ) {
+      return null;
+    }
+
+    // set up observations
+    var observations = {
+      Rx: coords.Rx,
+      Ry: coords.Ry,
+      Rz: coords.Rz,
+    }
+
+    // build up cardanRotation2Quaternion request object
+    var message = JSON.stringify(
+      {
+        "jsonrpc": "2.0",
+        id,
+        "method": "cardanRotation2Quaternion",
+        "params": observations
+      },
+      undefined,
+      4
+    );
+    return message;
+  },
 };
