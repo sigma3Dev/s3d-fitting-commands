@@ -13,8 +13,8 @@ module.exports = {
       return null;
     }
     // set up observations
-    var observations = [];
-    var i;
+    const observations = [];
+    let i;
     for (i = 0; i < points.length; i++) {
       // check point
       if (points[i].x == null || points[i].y == null || points[i].z == null) {
@@ -24,21 +24,21 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitCircle3DTscheby request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitCircle3DTscheby",
+        method: 'fitCircle3DTscheby',
         params: {
-          observations
-        }
+          observations,
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -57,8 +57,8 @@ module.exports = {
       return null;
     }
     // set up observations
-    var observations = [];
-    var i;
+    const observations = [];
+    let i;
     for (i = 0; i < points.length; i++) {
       // check point
       if (points[i].x == null || points[i].y == null || points[i].z == null) {
@@ -68,21 +68,21 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitPlaneL2 request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitPlaneL2",
+        method: 'fitPlaneL2',
         params: {
-          observations
-        }
+          observations,
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -114,8 +114,8 @@ module.exports = {
       return null;
     }
     // set up observations
-    var observations = [];
-    var i;
+    const observations = [];
+    let i;
     for (i = 0; i < points.length; i++) {
       // check point
       if (points[i].x == null || points[i].y == null || points[i].z == null) {
@@ -125,15 +125,15 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up registerPointsInPlane request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "registerPointsInPlane",
+        method: 'registerPointsInPlane',
         params: {
           points: observations,
           plane: {
@@ -142,12 +142,12 @@ module.exports = {
             z: plane.z,
             i: plane.i,
             j: plane.j,
-            k: plane.k
-          }
-        }
+            k: plane.k,
+          },
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -177,26 +177,22 @@ module.exports = {
     }
 
     // set up observations
-    var observations = {
+    const observations = {
       startPoints: [],
-      targetPoints: []
+      targetPoints: [],
     };
 
-    var i;
+    let i;
     for (i = 0; i < startPoints.length; i++) {
       // check point
-      if (
-        startPoints[i].x == null ||
-        startPoints[i].y == null ||
-        startPoints[i].z == null
-      ) {
+      if (startPoints[i].x == null || startPoints[i].y == null || startPoints[i].z == null) {
         return null;
       }
       // add start point
       observations.startPoints.push({
         x: startPoints[i].x,
         y: startPoints[i].y,
-        z: startPoints[i].z
+        z: startPoints[i].z,
       });
       // add target point
       observations.targetPoints.push({
@@ -205,20 +201,20 @@ module.exports = {
         z: targetPoints[i].z,
         useX: targetPoints[i].useX,
         useY: targetPoints[i].useY,
-        useZ: targetPoints[i].useZ
+        useZ: targetPoints[i].useZ,
       });
     }
 
     // build up transformation3D6W request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "transformation3D6W",
-        params: observations
+        method: 'transformation3D6W',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -247,7 +243,7 @@ module.exports = {
     }
 
     // set up observations
-    var observations = {
+    const observations = {
       // add transformation
       transformation: {
         tx: transformation.tx,
@@ -257,20 +253,20 @@ module.exports = {
         q1: transformation.q1,
         q2: transformation.q2,
         q3: transformation.q3,
-        m: transformation.m
-      }
+        m: transformation.m,
+      },
     };
 
     // build up invertTransformationParameters request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "invertTransformationParameters",
-        params: observations
+        method: 'invertTransformationParameters',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -304,12 +300,12 @@ module.exports = {
     }
 
     // set up observations
-    var observations = {
-      //add point
+    const observations = {
+      // add point
       point: {
         x: point.x,
         y: point.y,
-        z: point.z
+        z: point.z,
       },
       // add transformation
       transformation: {
@@ -320,20 +316,20 @@ module.exports = {
         q1: transformation[4],
         q2: transformation[5],
         q3: transformation[6],
-        m: 1.0
-      }
+        m: 1.0,
+      },
     };
 
     // build up applyTransformation request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "applyTransformation",
-        params: observations
+        method: 'applyTransformation',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -358,23 +354,23 @@ module.exports = {
     }
 
     // set up observations
-    var observations = {
+    const observations = {
       q0: coords.q0,
       q1: coords.q1,
       q2: coords.q2,
-      q3: coords.q3
+      q3: coords.q3,
     };
 
     // build up quaternion2CardanRotation request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "quaternion2CardanRotation",
-        params: observations
+        method: 'quaternion2CardanRotation',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -388,33 +384,74 @@ module.exports = {
    */
   cardanToQuat(coords, id) {
     // check input points
-    if (
-      coords == null ||
-      coords.Rx == null ||
-      coords.Ry == null ||
-      coords.Rz == null
-    ) {
+    if (coords == null || coords.Rx == null || coords.Ry == null || coords.Rz == null) {
       return null;
     }
 
     // set up observations
-    var observations = {
+    const observations = {
       rx: coords.Rx,
       ry: coords.Ry,
-      rz: coords.Rz
+      rz: coords.Rz,
     };
 
     // build up cardanRotation2Quaternion request object
-    var message = JSON.stringify(
+    const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "cardanRotation2Quaternion",
-        params: observations
+        method: 'cardanRotation2Quaternion',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
-  }
+  },
+
+  /**
+   * fitPlaneRansac - generates the json request to fit a plane
+   * with RANSAC
+   *
+   * @param  {Array} points the points used to fit the plane
+   * @param  {number} tolerance the tolerance used to fit the plane
+   * @param  {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  fitPlaneRansac(points, tolerance, id) {
+    // check input points
+    if (points == null || tolerance == null) {
+      return null;
+    }
+    // set up observations
+    const observations = [];
+    let i;
+    for (i = 0; i < points.length; i++) {
+      // check point
+      if (points[i].x == null || points[i].y == null || points[i].z == null) {
+        return null;
+      }
+      // add point
+      observations.push({
+        x: points[i].x,
+        y: points[i].y,
+        z: points[i].z,
+      });
+    }
+    // build up fitPlaneL2 request object
+    const message = JSON.stringify(
+      {
+        jsonrpc: '2.0',
+        id,
+        method: 'fitPlaneRansac',
+        params: {
+          observations,
+          tolerance,
+        },
+      },
+      undefined,
+      4,
+    );
+    return message;
+  },
 };
