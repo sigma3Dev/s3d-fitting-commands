@@ -1,6 +1,6 @@
 {
   "name": "s3d-fitting-commands",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "module with all available fitting commands (json) to communicate with the s3DFittingService (c++ websocket service)",
   "main": "index.js",
   "scripts": {
