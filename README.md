@@ -23,7 +23,7 @@ module with all available fitting commands (json) to communicate with the s3DFit
  * @param {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-applyTransformation: function(point, transformation, id),
+applyTransformation: function(point, transformation, id)
 
 /**
  * cardanToQuat - generates the json request to transform cardan rotation to quaternions
@@ -32,7 +32,7 @@ applyTransformation: function(point, transformation, id),
  * @param {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-cardanToQuat: function(coords, id),
+cardanToQuat: function(coords, id)
 
 /**
  * fitCircle3DTscheby - generates the json request to fit a 3D-circle
@@ -42,7 +42,7 @@ cardanToQuat: function(coords, id),
  * @param  {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-fitCircle3DTscheby: function(points, id),
+fitCircle3DTscheby: function(points, id)
 
 /**
  * fitCylinder - generates the json request to fit cylinder
@@ -51,7 +51,7 @@ fitCircle3DTscheby: function(points, id),
  * @param  {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-fitCylinder: function(points, id),
+fitCylinder: function(points, id)
 
 /**
  * fitPlaneL2 - generates the json request to fit a plane
@@ -61,7 +61,7 @@ fitCylinder: function(points, id),
  * @param  {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-fitPlaneL2: function(points, id),
+fitPlaneL2: function(points, id)
 
 /**
  * fitPlaneRansac - generates the json request to fit a plane
@@ -72,7 +72,7 @@ fitPlaneL2: function(points, id),
  * @param  {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-fitPlaneRansac: function(points, tolerance, id),
+fitPlaneRansac: function(points, tolerance, id)
 
 /**
  * invertTransformationParameters - generates the json request to invert transformation parameters
@@ -81,7 +81,7 @@ fitPlaneRansac: function(points, tolerance, id),
  * @param {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-invertTransformationParameters: function(transformation, id),
+invertTransformationParameters: function(transformation, id)
 
 /**
  * quatToCardan - generates the json request to transform quaternions to cardan rotation
@@ -90,7 +90,7 @@ invertTransformationParameters: function(transformation, id),
  * @param {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-quatToCardan: function(coords, id),
+quatToCardan: function(coords, id)
 
 /**
  * registerPointsInPlane - generates the json request to register
@@ -101,7 +101,7 @@ quatToCardan: function(coords, id),
  * @param  {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-registerPointsInPlane: function(plane, points, id),
+registerPointsInPlane: function(plane, points, id)
 
 /**
  * transformation3D6W - generates the json request to transform 3D coordinates
@@ -111,5 +111,5 @@ registerPointsInPlane: function(plane, points, id),
  * @param  {number} id an identifier for the generated request
  * @return {string} the json request representation
  */
-transformation3D6W: function(startPoints, targetPoints, id),
+transformation3D6W: function(startPoints, targetPoints, id)
 ```
