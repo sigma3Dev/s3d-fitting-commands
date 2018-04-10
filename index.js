@@ -343,7 +343,7 @@ module.exports = {
     if (
       coords == null ||
       coords.q0 == null ||
-      coord.q1 == null ||
+      coords.q1 == null ||
       coords.q2 == null ||
       coords.q3 == null
     ) {
