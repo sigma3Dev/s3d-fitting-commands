@@ -280,6 +280,49 @@ module.exports = {
   },
 
   /**
+   * fitPoint - generates the json request to fit point
+   *
+   * @param  {Array} points the points used to fit the plane
+   * @param  {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  fitPoint(points, id) {
+    // check input points
+    if (points == null) {
+      return null;
+    }
+    // set up observations
+    const observations = [];
+    let i;
+    for (i = 0; i < points.length; i++) {
+      // check point
+      if (points[i].x == null || points[i].y == null || points[i].z == null) {
+        return null;
+      }
+      // add point
+      observations.push({
+        x: points[i].x,
+        y: points[i].y,
+        z: points[i].z
+      });
+    }
+    // build up fitPlaneL2 request object
+    const message = JSON.stringify(
+      {
+        jsonrpc: "2.0",
+        id,
+        method: "fitPointL2",
+        params: {
+          observations,
+        }
+      },
+      undefined,
+      4
+    );
+    return message;
+  },
+
+  /**
    * invertTransformationParameters - generates the json request to invert transformation parameters
    *
    * @param {object} transformation transformation parameters to be inverted

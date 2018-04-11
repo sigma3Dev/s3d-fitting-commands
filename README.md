@@ -75,6 +75,15 @@ fitPlaneL2: function(points, id)
 fitPlaneRansac: function(points, tolerance, id)
 
 /**
+   * fitPoint - generates the json request to fit point
+   *
+   * @param  {Array} points the points used to fit the plane
+   * @param  {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  fitPoint: function(points, id)
+
+/**
  * invertTransformationParameters - generates the json request to invert transformation parameters
  *
  * @param {Object} transformation transformation parameters to be inverted
