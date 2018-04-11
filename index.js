@@ -33,7 +33,7 @@ module.exports = {
       point: {
         x: point.x,
         y: point.y,
-        z: point.z
+        z: point.z,
       },
       // add transformation
       transformation: {
@@ -44,20 +44,20 @@ module.exports = {
         q1: transformation[4],
         q2: transformation[5],
         q3: transformation[6],
-        m: 1.0
-      }
+        m: 1.0,
+      },
     };
 
     // build up applyTransformation request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "applyTransformation",
-        params: observations
+        method: 'applyTransformation',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -71,12 +71,7 @@ module.exports = {
    */
   cardanToQuat(coords, id) {
     // check input points
-    if (
-      coords == null ||
-      coords.Rx == null ||
-      coords.Ry == null ||
-      coords.Rz == null
-    ) {
+    if (coords == null || coords.Rx == null || coords.Ry == null || coords.Rz == null) {
       return null;
     }
 
@@ -84,19 +79,19 @@ module.exports = {
     const observations = {
       rx: coords.Rx,
       ry: coords.Ry,
-      rz: coords.Rz
+      rz: coords.Rz,
     };
 
     // build up cardanRotation2Quaternion request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "cardanRotation2Quaternion",
-        params: observations
+        method: 'cardanRotation2Quaternion',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -126,21 +121,21 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitCircle3DTscheby request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitCircle3DTscheby",
+        method: 'fitCircle3DTscheby',
         params: {
-          observations
-        }
+          observations,
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -169,28 +164,28 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitPlaneL2 request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitCylinderL2",
+        method: 'fitCylinderL2',
         params: {
           observations,
-          approxType: "approxFromFirstTwoPoints"
-        }
+          approxType: 'approxFromFirstTwoPoints',
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
 
   /**
-   * fitPoint - generates the json request to fit point
+   * fitLineL2 - generates the json request to fit a line
    *
    * @param  {Array} points the points used to fit the line
    * @param  {number} id an identifier for the generated request
@@ -213,21 +208,67 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitLineL2 request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitLine3DL2",
+        method: 'fitLine3DL2',
         params: {
           observations,
-        }
+        },
       },
       undefined,
-      4
+      4,
+    );
+    return message;
+  },
+
+  /**
+   * fitLineRansac - generates the json request to fit a line
+   * with RANSAC
+   *
+   * @param  {Array} points the points used to fit the line
+   * @param  {number} tolerance the tolerance used to fit the line
+   * @param  {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  fitLineRansac(points, tolerance, id) {
+    // check input points
+    if (points == null || tolerance == null) {
+      return null;
+    }
+    // set up observations
+    const observations = [];
+    let i;
+    for (i = 0; i < points.length; i++) {
+      // check point
+      if (points[i].x == null || points[i].y == null || points[i].z == null) {
+        return null;
+      }
+      // add point
+      observations.push({
+        x: points[i].x,
+        y: points[i].y,
+        z: points[i].z,
+      });
+    }
+    // build up fitLineRansac request object
+    const message = JSON.stringify(
+      {
+        jsonrpc: '2.0',
+        id,
+        method: 'fitLine3DRansac',
+        params: {
+          observations,
+          tolerance,
+        },
+      },
+      undefined,
+      4,
     );
     return message;
   },
@@ -257,21 +298,21 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitPlaneL2 request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitPlaneL2",
+        method: 'fitPlaneL2',
         params: {
-          observations
-        }
+          observations,
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -302,22 +343,22 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
-    // build up fitPlaneL2 request object
+    // build up fitPlaneRansac request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitPlaneRansac",
+        method: 'fitPlaneRansac',
         params: {
           observations,
-          tolerance
-        }
+          tolerance,
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -346,21 +387,21 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up fitPlaneL2 request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "fitPointL2",
+        method: 'fitPointL2',
         params: {
           observations,
-        }
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -399,20 +440,20 @@ module.exports = {
         q1: transformation.q1,
         q2: transformation.q2,
         q3: transformation.q3,
-        m: transformation.m
-      }
+        m: transformation.m,
+      },
     };
 
     // build up invertTransformationParameters request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "invertTransformationParameters",
-        params: observations
+        method: 'invertTransformationParameters',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -441,19 +482,19 @@ module.exports = {
       q0: coords.q0,
       q1: coords.q1,
       q2: coords.q2,
-      q3: coords.q3
+      q3: coords.q3,
     };
 
     // build up quaternion2CardanRotation request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "quaternion2CardanRotation",
-        params: observations
+        method: 'quaternion2CardanRotation',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -496,15 +537,15 @@ module.exports = {
       observations.push({
         x: points[i].x,
         y: points[i].y,
-        z: points[i].z
+        z: points[i].z,
       });
     }
     // build up registerPointsInPlane request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "registerPointsInPlane",
+        method: 'registerPointsInPlane',
         params: {
           points: observations,
           plane: {
@@ -513,12 +554,12 @@ module.exports = {
             z: plane.z,
             i: plane.i,
             j: plane.j,
-            k: plane.k
-          }
-        }
+            k: plane.k,
+          },
+        },
       },
       undefined,
-      4
+      4,
     );
     return message;
   },
@@ -550,24 +591,20 @@ module.exports = {
     // set up observations
     const observations = {
       startPoints: [],
-      targetPoints: []
+      targetPoints: [],
     };
 
     let i;
     for (i = 0; i < startPoints.length; i++) {
       // check point
-      if (
-        startPoints[i].x == null ||
-        startPoints[i].y == null ||
-        startPoints[i].z == null
-      ) {
+      if (startPoints[i].x == null || startPoints[i].y == null || startPoints[i].z == null) {
         return null;
       }
       // add start point
       observations.startPoints.push({
         x: startPoints[i].x,
         y: startPoints[i].y,
-        z: startPoints[i].z
+        z: startPoints[i].z,
       });
       // add target point
       observations.targetPoints.push({
@@ -576,21 +613,21 @@ module.exports = {
         z: targetPoints[i].z,
         useX: targetPoints[i].useX,
         useY: targetPoints[i].useY,
-        useZ: targetPoints[i].useZ
+        useZ: targetPoints[i].useZ,
       });
     }
 
     // build up transformation3D6W request object
     const message = JSON.stringify(
       {
-        jsonrpc: "2.0",
+        jsonrpc: '2.0',
         id,
-        method: "transformation3D6W",
-        params: observations
+        method: 'transformation3D6W',
+        params: observations,
       },
       undefined,
-      4
+      4,
     );
     return message;
-  }
+  },
 };

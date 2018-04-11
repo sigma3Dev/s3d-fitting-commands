@@ -54,13 +54,24 @@ fitCircle3DTscheby: function(points, id)
 fitCylinder: function(points, id)
 
 /**
-   * fitPoint - generates the json request to fit point
-   *
-   * @param  {Array} points the points used to fit the line
-   * @param  {number} id an identifier for the generated request
-   * @return {string} the json request representation
-   */
-  fitLineL2: function(points, id)
+ * fitPoint - generates the json request to fit point
+ *
+ * @param  {Array} points the points used to fit the line
+ * @param  {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+fitLineL2: function(points, id)
+
+/**
+ * fitLineRansac - generates the json request to fit a line
+ * with RANSAC
+ *
+ * @param  {Array} points the points used to fit the line
+ * @param  {number} tolerance the tolerance used to fit the line
+ * @param  {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+fitLineRansac: function(points, tolerance, id)
 
 /**
  * fitPlaneL2 - generates the json request to fit a plane
