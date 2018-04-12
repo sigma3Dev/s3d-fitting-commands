@@ -141,9 +141,52 @@ module.exports = {
   },
 
   /**
+   * fitCircleL2 - generates the json request to fit circle
+   *
+   * @param  {Array} points the points used to fit the circle
+   * @param  {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  fitCircleL2(points, id) {
+    // check input points
+    if (points == null) {
+      return null;
+    }
+    // set up observations
+    const observations = [];
+    let i;
+    for (i = 0; i < points.length; i++) {
+      // check point
+      if (points[i].x == null || points[i].y == null || points[i].z == null) {
+        return null;
+      }
+      // add point
+      observations.push({
+        x: points[i].x,
+        y: points[i].y,
+        z: points[i].z,
+      });
+    }
+    // build up fitPlaneL2 request object
+    const message = JSON.stringify(
+      {
+        jsonrpc: '2.0',
+        id,
+        method: 'fitCircle3DL2',
+        params: {
+          observations,
+        },
+      },
+      undefined,
+      4,
+    );
+    return message;
+  },
+
+  /**
    * fitCylinder - generates the json request to fit cylinder
    *
-   * @param  {Array} points the points used to fit the plane
+   * @param  {Array} points the points used to fit the cylinder
    * @param  {number} id an identifier for the generated request
    * @return {string} the json request representation
    */

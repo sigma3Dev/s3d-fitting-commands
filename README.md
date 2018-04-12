@@ -45,6 +45,15 @@ cardanToQuat: function(coords, id)
 fitCircle3DTscheby: function(points, id)
 
 /**
+ * fitCircleL2 - generates the json request to fit circle
+ *
+ * @param  {Array} points the points used to fit the circle
+ * @param  {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+fitCircleL2: function(points, id)
+
+/**
  * fitCylinder - generates the json request to fit cylinder
  *
  * @param  {Array} points the points used to fit the plane
