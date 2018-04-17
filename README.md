@@ -26,6 +26,15 @@ module with all available fitting commands (json) to communicate with the s3DFit
 applyTransformation: function(point, transformation, id)
 
 /**
+ * bundleAdjustment - generates the json request to perform bundle adjustment
+ *
+ * @param {array} points transformation parameters to be inverted
+ * @param {number} id an identifier for the generated request
+ * @return {string} the json request representation
+ */
+bundleAdjustment: function(points, id)
+
+/**
  * cardanToQuat - generates the json request to transform cardan rotation to quaternions
  *
  * @param {object} coords to be transformed

@@ -63,6 +63,96 @@ module.exports = {
   },
 
   /**
+   * bundleAdjustment - generates the json request to perform bundle adjustment
+   *
+   * @param {array} points transformation parameters to be inverted
+   * @param {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  bundleAdjustment(points, id) {
+    // check input points
+    if (points === null) {
+      return null;
+    }
+
+    // set up observations
+    const observations = [
+      {
+        id: points[0].stationId,
+        commonGeometries: [
+          {
+            id: points[0].geometryId,
+            x: points[0].x,
+            y: points[0].y,
+            z: points[0].z,
+            stdev: points[0].stdev,
+          },
+        ],
+      },
+    ];
+    let i;
+    for (i = 1; i < points.length; i++) {
+      let hasBeenAdded = false;
+      if (
+        points[i].stationId === null ||
+        points[i].geometryId === null ||
+        points[i].x === null ||
+        points[i].y === null ||
+        points[i].z === null ||
+        points[i].stdev === null
+      ) {
+        return null;
+      }
+
+      let j;
+      for (j = 0; j < observations.length; j++) {
+        if (observations[j].id === points[i].stationId) {
+          observations[j].commonGeometries.push({
+            id: points[i].geometryId,
+            x: points[i].x,
+            y: points[i].y,
+            z: points[i].z,
+            stdev: points[i].stdev,
+          });
+          hasBeenAdded = true;
+        }
+      }
+
+      if (!hasBeenAdded) {
+        observations.push({
+          id: points[i].stationId,
+          commonGeometries: [
+            {
+              id: points[i].geometryId,
+              x: points[i].x,
+              y: points[i].y,
+              z: points[i].z,
+              stdev: points[i].stdev,
+            },
+          ],
+        });
+      }
+    }
+
+    // build up invertTransformationParameters request object
+    const message = JSON.stringify(
+      {
+        jsonrpc: '2.0',
+        id,
+        method: 'bundleAdjustment',
+        params: {
+          baseStationId: 1000,
+          stations: observations,
+        },
+      },
+      undefined,
+      4,
+    );
+    console.log(message);
+    return message;
+  },
+
+  /**
    * cardanToQuat - generates the json request to transform cardan rotation to quaternions
    *
    * @param {object} coords to be transformed
