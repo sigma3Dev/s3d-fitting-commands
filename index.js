@@ -134,7 +134,7 @@ module.exports = {
       }
     }
 
-    // build up invertTransformationParameters request object
+    // build up bundleAdjustment request object
     const message = JSON.stringify(
       {
         jsonrpc: '2.0',
@@ -148,7 +148,6 @@ module.exports = {
       undefined,
       4,
     );
-    console.log(message);
     return message;
   },
 
