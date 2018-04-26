@@ -66,12 +66,13 @@ module.exports = {
    * bundleAdjustment - generates the json request to perform bundle adjustment
    *
    * @param {array} points transformation parameters to be inverted
+   * @param {number} baseStation base Station
    * @param {number} id an identifier for the generated request
    * @return {string} the json request representation
    */
-  bundleAdjustment(points, id) {
+  bundleAdjustment(points, baseStation, id) {
     // check input points
-    if (points === null) {
+    if (points === null || baseStation === null) {
       return null;
     }
 
@@ -141,7 +142,7 @@ module.exports = {
         id,
         method: 'bundleAdjustment',
         params: {
-          baseStationId: 1000,
+          baseStationId: baseStation,
           stations: observations,
         },
       },
