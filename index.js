@@ -763,4 +763,66 @@ module.exports = {
     );
     return message;
   },
+
+  /**
+   * translatePointAlongAxis - generates the json request to translate point along axis
+   *
+   * @param {object} input point to be translated
+   * @param {number} id an identifier for the generated request
+   * @return {string} the json request representation
+   */
+  translatePointAlongAxis(input, id) {
+    // check input points
+    if (
+      input == null ||
+      input.x == null ||
+      input.y == null ||
+      input.z == null ||
+      input.i == null ||
+      input.j == null ||
+      input.z == null ||
+      input.amount == null
+    ) {
+      return null;
+    }
+
+    // set up observations
+    const observations = {
+      // add input
+      input: {
+        x: input.x,
+        y: input.y,
+        z: input.z,
+        i: input.i,
+        j: input.j,
+        z: input.z,
+        amount: input.amount,
+      },
+    };
+
+    // build up translatePointAlongAxis request object
+    const message = JSON.stringify(
+      {
+        jsonrpc: '2.0',
+        id,
+        method: 'translatePointAlongAxis',
+        params: {
+          point: {
+            x: input.x,
+            y: input.y,
+            z: input.z,
+          },
+          axis: {
+            i: input.i,
+            j: input.j,
+            k: input.k,
+          },
+          amount: input.amount,
+        },
+      },
+      undefined,
+      4,
+    );
+    return message;
+  },
 };
